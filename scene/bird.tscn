@@ -1,0 +1,78 @@
+[gd_scene load_steps=13 format=3 uid="uid://qampsxidomc7"]
+
+[ext_resource type="Script" uid="uid://b85fmdra1oc2u" path="res://scripts/bird.gd" id="1_f37dj"]
+[ext_resource type="Texture2D" uid="uid://6kbxuuojd6e2" path="res://assets/bluebird-upflap.png" id="2_soxtp"]
+[ext_resource type="Texture2D" uid="uid://dubtkwvs8dmf0" path="res://assets/bluebird-midflap.png" id="3_w18mt"]
+[ext_resource type="Texture2D" uid="uid://bevdvi7vo36n4" path="res://assets/bluebird-downflap.png" id="4_6mwoh"]
+[ext_resource type="Texture2D" uid="uid://b6kobd08ygbv7" path="res://assets/redbird-upflap.png" id="5_vktn7"]
+[ext_resource type="Texture2D" uid="uid://cyme822ghkldu" path="res://assets/redbird-midflap.png" id="6_nn0ig"]
+[ext_resource type="Texture2D" uid="uid://dwpjcrvwfbdc" path="res://assets/redbird-downflap.png" id="7_h0mmm"]
+[ext_resource type="Texture2D" uid="uid://de2uptf8eou0g" path="res://assets/yellowbird-upflap.png" id="8_b8ifh"]
+[ext_resource type="Texture2D" uid="uid://ca4v8m7qu08up" path="res://assets/yellowbird-midflap.png" id="9_nshtw"]
+[ext_resource type="Texture2D" uid="uid://drmsclxj05mg3" path="res://assets/yellowbird-downflap.png" id="10_pgdow"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qp52p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_soxtp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w18mt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6mwoh")
+}],
+"loop": true,
+"name": &"blue_bird",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vktn7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_nn0ig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h0mmm")
+}],
+"loop": true,
+"name": &"red_bird",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_b8ifh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_nshtw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pgdow")
+}],
+"loop": true,
+"name": &"yellow_bird",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ct3r"]
+radius = 18.0
+height = 50.0
+
+[node name="Bird" type="CharacterBody2D"]
+script = ExtResource("1_f37dj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_qp52p")
+animation = &"yellow_bird"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_6ct3r")
+
+[node name="JumpTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

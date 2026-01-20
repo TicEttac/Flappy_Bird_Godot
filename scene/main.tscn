@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://7677hkxow8c"]
+
+[ext_resource type="Script" uid="uid://deo6c2fg6ognv" path="res://scripts/main.gd" id="1_brvut"]
+[ext_resource type="PackedScene" uid="uid://qampsxidomc7" path="res://scene/bird.tscn" id="1_wp4xf"]
+[ext_resource type="Texture2D" uid="uid://issxgwnqstct" path="res://assets/background-day.png" id="2_4j5ol"]
+[ext_resource type="PackedScene" uid="uid://ct15hi2ui4is5" path="res://scene/hud.tscn" id="2_brvut"]
+[ext_resource type="PackedScene" uid="uid://d4jxijj2kreku" path="res://scene/pipe_door.tscn" id="2_p1hux"]
+[ext_resource type="PackedScene" uid="uid://ifc1o655m5iv" path="res://scene/ground.tscn" id="3_0ha60"]
+[ext_resource type="Texture2D" uid="uid://i4jkpyt4s4h" path="res://assets/background-night.png" id="3_p1hux"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_brvut")
+pipedoor_scene = ExtResource("2_p1hux")
+
+[node name="BackgroundDay" type="Sprite2D" parent="."]
+position = Vector2(240, 378.00003)
+scale = Vector2(1.6770835, 1.5214844)
+texture = ExtResource("2_4j5ol")
+
+[node name="BackgroundNight" type="Sprite2D" parent="."]
+position = Vector2(242, 387.00006)
+scale = Vector2(1.6423612, 1.5371095)
+texture = ExtResource("3_p1hux")
+
+[node name="Bird" parent="." instance=ExtResource("1_wp4xf")]
+
+[node name="HUD" parent="." instance=ExtResource("2_brvut")]
+
+[node name="Ground" parent="." instance=ExtResource("3_0ha60")]
+z_index = 1
+
+[node name="PipeDoorTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="game_start" from="." to="Bird" method="_on_main_game_start"]
+[connection signal="game_start" from="." to="HUD" method="_on_main_game_start"]
+[connection signal="game_start" from="." to="Ground" method="_on_main_game_start"]
+[connection signal="game_over" from="Bird" to="." method="_on_bird_game_over"]
+[connection signal="game_over" from="Bird" to="HUD" method="_on_bird_game_over"]
+[connection signal="game_over" from="Bird" to="Ground" method="_on_bird_game_over"]
+[connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]
+[connection signal="new_game" from="HUD" to="Bird" method="_on_hud_new_game"]
+[connection signal="new_game" from="HUD" to="Ground" method="_on_hud_new_game"]
+[connection signal="timeout" from="PipeDoorTimer" to="." method="_on_pipe_door_timer_timeout"]
