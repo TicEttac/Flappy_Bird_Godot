@@ -15,10 +15,16 @@ run/main_scene="uid://7677hkxow8c"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="uid://b2mv43aje2f5g"
 
+[autoload]
+
+SaveManager="*res://scripts/save_manager.gd"
+
 [display]
 
 window/size/viewport_width=480
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [input]
@@ -33,3 +39,4 @@ jump={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

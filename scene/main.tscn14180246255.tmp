@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://7677hkxow8c"]
+
+[ext_resource type="Script" uid="uid://deo6c2fg6ognv" path="res://scripts/main.gd" id="1_brvut"]
+[ext_resource type="PackedScene" uid="uid://qampsxidomc7" path="res://scene/bird.tscn" id="1_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://ct15hi2ui4is5" path="res://scene/hud.tscn" id="2_brvut"]
+[ext_resource type="PackedScene" uid="uid://d4jxijj2kreku" path="res://scene/pipe_door.tscn" id="2_p1hux"]
+[ext_resource type="PackedScene" uid="uid://ifc1o655m5iv" path="res://scene/ground.tscn" id="3_0ha60"]
+[ext_resource type="Shader" uid="uid://cy4nt462vcfkm" path="res://shaders/background.gdshader" id="3_p1hux"]
+[ext_resource type="Texture2D" uid="uid://issxgwnqstct" path="res://assets/background-day.png" id="4_of57s"]
+[ext_resource type="Script" uid="uid://cc35cpct8ulv2" path="res://scripts/background.gd" id="5_b5f6u"]
+[ext_resource type="Texture2D" uid="uid://i4jkpyt4s4h" path="res://assets/background-night.png" id="5_of57s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5f6u"]
+shader = ExtResource("3_p1hux")
+shader_parameter/scroll_offset = 0.05
+
+[node name="Main" type="Node"]
+script = ExtResource("1_brvut")
+pipedoor_scene = ExtResource("2_p1hux")
+
+[node name="BackgroundDay" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_b5f6u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_of57s")
+script = ExtResource("5_b5f6u")
+
+[node name="BackgroundNight" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_b5f6u")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_of57s")
+script = ExtResource("5_b5f6u")
+
+[node name="Bird" parent="." instance=ExtResource("1_wp4xf")]
+
+[node name="HUD" parent="." instance=ExtResource("2_brvut")]
+
+[node name="Ground" parent="." instance=ExtResource("3_0ha60")]
+z_index = 1
+
+[node name="PipeDoorTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="game_start" from="." to="Bird" method="_on_main_game_start"]
+[connection signal="game_start" from="." to="HUD" method="_on_main_game_start"]
+[connection signal="game_start" from="." to="Ground" method="_on_main_game_start"]
+[connection signal="game_over" from="Bird" to="." method="_on_bird_game_over"]
+[connection signal="game_over" from="Bird" to="BackgroundDay" method="_on_bird_game_over"]
+[connection signal="game_over" from="Bird" to="BackgroundNight" method="_on_bird_game_over"]
+[connection signal="game_over" from="Bird" to="HUD" method="_on_bird_game_over"]
+[connection signal="game_over" from="Bird" to="Ground" method="_on_bird_game_over"]
+[connection signal="new_game" from="HUD" to="." method="_on_hud_new_game"]
+[connection signal="new_game" from="HUD" to="BackgroundDay" method="_on_hud_new_game"]
+[connection signal="new_game" from="HUD" to="BackgroundNight" method="_on_hud_new_game"]
+[connection signal="new_game" from="HUD" to="Bird" method="_on_hud_new_game"]
+[connection signal="new_game" from="HUD" to="Ground" method="_on_hud_new_game"]
+[connection signal="timeout" from="PipeDoorTimer" to="." method="_on_pipe_door_timer_timeout"]

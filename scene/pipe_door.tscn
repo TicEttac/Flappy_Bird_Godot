@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d4jxijj2kreku"]
 
-[ext_resource type="Script" uid="uid://byojvlxs5e2v0" path="res://scene/pipe_door.gd" id="1_80adq"]
+[ext_resource type="Script" uid="uid://byojvlxs5e2v0" path="res://scripts/pipe_door.gd" id="1_80adq"]
 [ext_resource type="PackedScene" uid="uid://d3y4c2t374cxh" path="res://scene/pipe.tscn" id="1_wx2js"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80adq"]

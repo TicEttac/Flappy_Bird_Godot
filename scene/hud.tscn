@@ -1,25 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct15hi2ui4is5"]
+[gd_scene load_steps=12 format=3 uid="uid://ct15hi2ui4is5"]
 
 [ext_resource type="Texture2D" uid="uid://jxf674ppvhtf" path="res://assets/gameover.png" id="1_o8u2p"]
 [ext_resource type="Script" uid="uid://bpst1dwwaxvnq" path="res://scripts/hud.gd" id="1_pvgpj"]
 [ext_resource type="Texture2D" uid="uid://dg13qt0ftoxbs" path="res://assets/message.png" id="2_pvgpj"]
 [ext_resource type="FontFile" uid="uid://dqgjj18ly8nwy" path="res://assets/font/font_score.ttf" id="2_ry2h7"]
 [ext_resource type="Texture2D" uid="uid://onayh81a55q8" path="res://assets/button_play_normal.png" id="4_nhyt6"]
+[ext_resource type="Texture2D" uid="uid://c3r3c5o7wtp86" path="res://assets/panel_score.png" id="6_lky30"]
+[ext_resource type="Script" uid="uid://dnwtg7gc6omya" path="res://scene/high_score_pannel.gd" id="7_62he3"]
+[ext_resource type="Texture2D" uid="uid://cofxwxmgn4o06" path="res://assets/label_new.png" id="7_kc6cu"]
+[ext_resource type="Texture2D" uid="uid://cq34kk3l3lj7s" path="res://assets/medal_gold.png" id="8_62he3"]
+[ext_resource type="Texture2D" uid="uid://dfa0wucmppff4" path="res://assets/medal_silver.png" id="9_b48p2"]
+[ext_resource type="Texture2D" uid="uid://cnyj2dhijvvgi" path="res://assets/medal_bronze.png" id="10_086as"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_pvgpj")
 
 [node name="ScoreLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 11.0
-offset_right = 20.0
-offset_bottom = 72.0
+anchors_preset = -1
+anchor_left = 0.4625
+anchor_top = 0.05277778
+anchor_right = 0.54583335
+anchor_bottom = 0.1375
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_ry2h7")
 theme_override_font_sizes/font_size = 50
+metadata/_edit_use_anchors_ = true
 
 [node name="GameOver" type="Sprite2D" parent="."]
 position = Vector2(242, 127.99998)
@@ -38,10 +43,55 @@ texture = ExtResource("4_nhyt6")
 
 [node name="Button" type="Button" parent="ReplayButton"]
 visibility_layer = 0
-offset_left = -25.47651
-offset_top = -13.779009
-offset_right = -5.476509
-offset_bottom = -2.7790089
+anchors_preset = -1
+anchor_left = 0.010067133
+anchor_top = 0.024861764
+anchor_right = 0.99250484
+anchor_bottom = 0.9705143
+offset_left = -26.0
+offset_top = -14.5
+offset_right = -57.08676
+offset_bottom = -30.923923
 scale = Vector2(2.554338, 2.493084)
+metadata/_edit_use_anchors_ = true
 
+[node name="HighScorePannel" type="Sprite2D" parent="."]
+position = Vector2(240, 360)
+scale = Vector2(2, 2)
+texture = ExtResource("6_lky30")
+script = ExtResource("7_62he3")
+
+[node name="New" type="Sprite2D" parent="HighScorePannel"]
+position = Vector2(17, 4)
+texture = ExtResource("7_kc6cu")
+
+[node name="GoldMedal" type="Sprite2D" parent="HighScorePannel"]
+position = Vector2(-33, 4)
+texture = ExtResource("8_62he3")
+
+[node name="SilverMedal" type="Sprite2D" parent="HighScorePannel"]
+position = Vector2(-33, 4)
+texture = ExtResource("9_b48p2")
+
+[node name="BronzeMedal" type="Sprite2D" parent="HighScorePannel"]
+position = Vector2(-33, 4)
+texture = ExtResource("10_086as")
+
+[node name="Score" type="Label" parent="HighScorePannel"]
+offset_left = 25.0
+offset_top = -14.0
+offset_right = 45.5
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("2_ry2h7")
+text = "05"
+
+[node name="HighScore" type="Label" parent="HighScorePannel"]
+offset_left = 25.0
+offset_top = 8.0
+offset_right = 42.5
+offset_bottom = 25.0
+theme_override_fonts/font = ExtResource("2_ry2h7")
+text = "0"
+
+[connection signal="button_down" from="ReplayButton/Button" to="." method="_on_button_button_down"]
 [connection signal="pressed" from="ReplayButton/Button" to="." method="_on_replay_button_pressed"]
