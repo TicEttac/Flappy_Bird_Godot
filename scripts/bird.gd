@@ -13,8 +13,12 @@ const MAX_RISE_ROTATION = deg_to_rad(-30)  # nez vers le haut, au saut
 const ROTATION_LERP_SPEED = 8.0            # + haut = transition + rapide
 const FALL_SPEED_FOR_MAX_ROTATION = 600.0  # vitesse de chute donnant 90°
 
+@onready var hit_sound = preload("res://assets/sounds/sfx_hit.wav")
+@onready var wing_sound = preload("res://assets/sounds/sfx_wing.wav")
 
 func _ready() -> void:
+	$HitAudioPlayer.stream = hit_sound
+	$WingAudioPlayer.stream = wing_sound
 	_on_hud_new_game()
 
 
@@ -26,6 +30,7 @@ func _physics_process(delta: float) -> void:
 
 		#handle game over
 		if collision:
+			$HitAudioPlayer.play()
 			var collider = collision.get_collider()
 			print("collision with ", collider.name)
 			game_over.emit()
@@ -62,6 +67,7 @@ func jump():
 	$JumpTimer.start()
 	if not $AnimatedSprite2D.is_playing():
 		$AnimatedSprite2D.play()
+	$WingAudioPlayer.play()
 
 
 func _on_jump_timer_timeout() -> void:

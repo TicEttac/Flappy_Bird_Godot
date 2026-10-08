@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://qampsxidomc7"]
+[gd_scene format=3 uid="uid://qampsxidomc7"]
 
 [ext_resource type="Script" uid="uid://b85fmdra1oc2u" path="res://scripts/bird.gd" id="1_f37dj"]
 [ext_resource type="Texture2D" uid="uid://6kbxuuojd6e2" path="res://assets/bluebird-upflap.png" id="2_soxtp"]
@@ -23,7 +23,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_6mwoh")
 }],
-"loop": true,
+"loop": 1,
 "name": &"blue_bird",
 "speed": 5.0
 }, {
@@ -37,7 +37,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("7_h0mmm")
 }],
-"loop": true,
+"loop": 1,
 "name": &"red_bird",
 "speed": 5.0
 }, {
@@ -51,7 +51,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("10_pgdow")
 }],
-"loop": true,
+"loop": 1,
 "name": &"yellow_bird",
 "speed": 10.0
 }]
@@ -60,19 +60,23 @@ animations = [{
 radius = 18.0
 height = 50.0
 
-[node name="Bird" type="CharacterBody2D"]
+[node name="Bird" type="CharacterBody2D" unique_id=666003522]
 script = ExtResource("1_f37dj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1339351759]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_qp52p")
 animation = &"yellow_bird"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=925017173]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_6ct3r")
 
-[node name="JumpTimer" type="Timer" parent="."]
+[node name="JumpTimer" type="Timer" parent="." unique_id=1367514487]
 one_shot = true
+
+[node name="WingAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1381846594]
+
+[node name="HitAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1937677252]
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

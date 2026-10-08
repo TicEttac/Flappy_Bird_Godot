@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dvt7xrm20d2qw"]
+
+[ext_resource type="Texture2D" uid="uid://dcecp7o5cfq4a" path="res://assets/leaderboard.png" id="1_se1uo"]
+[ext_resource type="Script" uid="uid://cqenflonwgemg" path="res://scripts/leaderboard_manager.gd" id="1_tgs8g"]
+[ext_resource type="Texture2D" uid="uid://dqbw2ixfk35qp" path="res://assets/button_back_normal.png" id="3_g5le3"]
+[ext_resource type="Texture2D" uid="uid://ksc3dlmygplm" path="res://assets/button_send_normal.png" id="4_pbkiu"]
+[ext_resource type="FontFile" uid="uid://dqgjj18ly8nwy" path="res://assets/font/font_score.ttf" id="5_x4iie"]
+[ext_resource type="Texture2D" uid="uid://cf5routa14usu" path="res://assets/leaderboard_case.png" id="6_miu1e"]
+[ext_resource type="Texture2D" uid="uid://dl8vqilqvsvwi" path="res://assets/button_set_normal.png" id="7_fb4cr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u5b2p"]
+
+[node name="LeaderboardManager" type="Control" unique_id=1901419734]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tgs8g")
+
+[node name="Leaderboard" type="Sprite2D" parent="." unique_id=1238005856]
+position = Vector2(240, 300)
+scale = Vector2(3, 3)
+texture = ExtResource("1_se1uo")
+
+[node name="HTTPLeaderboard" type="HTTPRequest" parent="." unique_id=340193282]
+
+[node name="BackButton" type="Sprite2D" parent="." unique_id=1776177581]
+position = Vector2(150, 630)
+scale = Vector2(3, 3)
+texture = ExtResource("3_g5le3")
+
+[node name="Button" type="Button" parent="BackButton" unique_id=621770378]
+modulate = Color(1, 1, 1, 0)
+offset_left = -25.333332
+offset_top = -14.333328
+offset_right = 25.0
+offset_bottom = 14.0
+
+[node name="ShareButton" type="Sprite2D" parent="." unique_id=1005066663]
+position = Vector2(330, 630)
+scale = Vector2(3, 3)
+texture = ExtResource("4_pbkiu")
+
+[node name="Button" type="Button" parent="ShareButton" unique_id=160253855]
+modulate = Color(1, 1, 1, 0)
+offset_left = -25.666664
+offset_top = -14.0
+offset_right = 26.0
+offset_bottom = 14.3333435
+
+[node name="HTTPSend" type="HTTPRequest" parent="." unique_id=30689242]
+
+[node name="ErrorLabel" type="Label" parent="." unique_id=2072703580]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 90.0
+offset_right = 380.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.7254902, 0.019607844, 0, 1)
+theme_override_fonts/font = ExtResource("5_x4iie")
+theme_override_font_sizes/font_size = 20
+
+[node name="PseudoBox" type="Sprite2D" parent="." unique_id=1233880741]
+position = Vector2(240, 150)
+scale = Vector2(3, 3)
+texture = ExtResource("6_miu1e")
+
+[node name="LineEdit" type="LineEdit" parent="PseudoBox" unique_id=2111066918]
+offset_left = -50.0
+offset_top = -9.333334
+offset_right = 38.66667
+offset_bottom = 9.666666
+theme_override_colors/font_color = Color(0.9843137, 0.4745098, 0.34509805, 1)
+theme_override_colors/font_placeholder_color = Color(0.9843137, 0.4745098, 0.34509805, 1)
+theme_override_fonts/font = ExtResource("5_x4iie")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_u5b2p")
+placeholder_text = "Enter pseudo"
+max_length = 50
+
+[node name="PseudoButton" type="Sprite2D" parent="PseudoBox" unique_id=1917886172]
+position = Vector2(43, -0.33333182)
+scale = Vector2(0.7, 0.6333332)
+texture = ExtResource("7_fb4cr")
+
+[node name="Button" type="Button" parent="PseudoBox/PseudoButton" unique_id=1278956263]
+modulate = Color(1, 1, 1, 0)
+offset_left = -8.571432
+offset_top = -9.473689
+offset_right = 9.047617
+offset_bottom = 8.421048
+
+[connection signal="button_down" from="BackButton/Button" to="." method="_on_button_back_down"]
+[connection signal="pressed" from="BackButton/Button" to="." method="_on_button_back_pressed"]
+[connection signal="button_down" from="ShareButton/Button" to="." method="_on_button_send_down"]
+[connection signal="button_up" from="ShareButton/Button" to="." method="_on_button_send_up"]
+[connection signal="pressed" from="ShareButton/Button" to="." method="_on_button_send_pressed"]
+[connection signal="button_down" from="PseudoBox/PseudoButton/Button" to="." method="_on_button_set_down"]
+[connection signal="button_up" from="PseudoBox/PseudoButton/Button" to="." method="_on_button_set_up"]
+[connection signal="pressed" from="PseudoBox/PseudoButton/Button" to="." method="_on_button_set_pressed"]

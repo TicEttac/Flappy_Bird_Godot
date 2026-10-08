@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://d2vlw25mfg72r"]
+
+[ext_resource type="Texture2D" uid="uid://cf5routa14usu" path="res://assets/leaderboard_case.png" id="1_18c06"]
+[ext_resource type="Script" uid="uid://c701ihtqvqxqi" path="res://scripts/leaderboard_case.gd" id="1_oocee"]
+[ext_resource type="FontFile" uid="uid://dqgjj18ly8nwy" path="res://assets/font/font_score.ttf" id="2_oocee"]
+
+[node name="LeaderboardCase" type="Node2D" unique_id=502247203]
+script = ExtResource("1_oocee")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=117443634]
+scale = Vector2(3, 3)
+texture = ExtResource("1_18c06")
+
+[node name="Pseudo" type="Label" parent="." unique_id=1149286981]
+offset_left = -146.0
+offset_top = -11.0
+offset_right = 12.0
+offset_bottom = 12.0
+theme_override_colors/font_color = Color(0.9843137, 0.4745098, 0.34509805, 1)
+theme_override_fonts/font = ExtResource("2_oocee")
+
+[node name="Score" type="Label" parent="." unique_id=1832109643]
+offset_left = 91.0
+offset_top = -12.0
+offset_right = 131.0
+offset_bottom = 11.0
+theme_override_colors/font_color = Color(0.9843137, 0.4745098, 0.34509805, 1)
+theme_override_fonts/font = ExtResource("2_oocee")

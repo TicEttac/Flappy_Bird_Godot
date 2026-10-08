@@ -8,16 +8,21 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="flappy bird"
 run/main_scene="uid://7677hkxow8c"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.7", "Mobile")
 config/icon="uid://b2mv43aje2f5g"
 
 [autoload]
 
 SaveManager="*res://scripts/save_manager.gd"
+Logs="*uid://ec3p6mj050mt"
 
 [display]
 

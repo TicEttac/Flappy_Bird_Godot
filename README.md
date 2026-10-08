@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository is my version of the game flappy bird. It is still a work in progress because i would like to implement a server part which could register high score.
+This repository is my version of the game flappy bird. It got a leaderboard part which is made to communicate with [the repository available here](https://github.com/TicEttac/flapi) as a leaderboard server.
 
 ## Usage
 
@@ -10,7 +10,7 @@ You can download the apk file onto your android device and then install it after
 
 ## Notice
 
-The assets are from [this source](https://bitbucket.org/EdwardAngeles/godot-engine-tutorial-flappy-bird/src/master/) which doesn't contain license.
+The assets are from [this source](https://bitbucket.org/EdwardAngeles/godot-engine-tutorial-flappy-bird/src/master/) which doesn't contain license. Except the leaderboard's sprites which i made with inspiration from the score panel. Those sprites are provided under the same license as this project.
 
 ## License
 

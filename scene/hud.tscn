@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ct15hi2ui4is5"]
+[gd_scene format=3 uid="uid://ct15hi2ui4is5"]
 
 [ext_resource type="Texture2D" uid="uid://jxf674ppvhtf" path="res://assets/gameover.png" id="1_o8u2p"]
 [ext_resource type="Script" uid="uid://bpst1dwwaxvnq" path="res://scripts/hud.gd" id="1_pvgpj"]
@@ -6,16 +6,18 @@
 [ext_resource type="FontFile" uid="uid://dqgjj18ly8nwy" path="res://assets/font/font_score.ttf" id="2_ry2h7"]
 [ext_resource type="Texture2D" uid="uid://onayh81a55q8" path="res://assets/button_play_normal.png" id="4_nhyt6"]
 [ext_resource type="Texture2D" uid="uid://c3r3c5o7wtp86" path="res://assets/panel_score.png" id="6_lky30"]
-[ext_resource type="Script" uid="uid://dnwtg7gc6omya" path="res://scene/high_score_pannel.gd" id="7_62he3"]
+[ext_resource type="Script" uid="uid://dnwtg7gc6omya" path="res://scripts/high_score_pannel.gd" id="7_62he3"]
 [ext_resource type="Texture2D" uid="uid://cofxwxmgn4o06" path="res://assets/label_new.png" id="7_kc6cu"]
 [ext_resource type="Texture2D" uid="uid://cq34kk3l3lj7s" path="res://assets/medal_gold.png" id="8_62he3"]
 [ext_resource type="Texture2D" uid="uid://dfa0wucmppff4" path="res://assets/medal_silver.png" id="9_b48p2"]
 [ext_resource type="Texture2D" uid="uid://cnyj2dhijvvgi" path="res://assets/medal_bronze.png" id="10_086as"]
+[ext_resource type="Texture2D" uid="uid://dw881sficvouu" path="res://assets/button_score_normal.png" id="12_b48p2"]
+[ext_resource type="PackedScene" uid="uid://dvt7xrm20d2qw" path="res://scene/leaderboard_manager.tscn" id="13_086as"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=1775317619]
 script = ExtResource("1_pvgpj")
 
-[node name="ScoreLabel" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="." unique_id=2112706708]
 anchors_preset = -1
 anchor_left = 0.4625
 anchor_top = 0.05277778
@@ -26,22 +28,22 @@ theme_override_fonts/font = ExtResource("2_ry2h7")
 theme_override_font_sizes/font_size = 50
 metadata/_edit_use_anchors_ = true
 
-[node name="GameOver" type="Sprite2D" parent="."]
+[node name="GameOver" type="Sprite2D" parent="." unique_id=295833688]
 position = Vector2(242, 127.99998)
 scale = Vector2(1.736979, 1.8095238)
 texture = ExtResource("1_o8u2p")
 
-[node name="GetReady" type="Sprite2D" parent="."]
+[node name="GetReady" type="Sprite2D" parent="." unique_id=1438326336]
 position = Vector2(237.99998, 290)
 scale = Vector2(1.5978261, 1.4803369)
 texture = ExtResource("2_pvgpj")
 
-[node name="ReplayButton" type="Sprite2D" parent="."]
-position = Vector2(240, 544)
-scale = Vector2(2.8653846, 3.1206896)
+[node name="ReplayButton" type="Sprite2D" parent="." unique_id=1058836512]
+position = Vector2(240, 645)
+scale = Vector2(3, 3.268)
 texture = ExtResource("4_nhyt6")
 
-[node name="Button" type="Button" parent="ReplayButton"]
+[node name="Button" type="Button" parent="ReplayButton" unique_id=1621930027]
 visibility_layer = 0
 anchors_preset = -1
 anchor_left = 0.010067133
@@ -55,29 +57,29 @@ offset_bottom = -30.923923
 scale = Vector2(2.554338, 2.493084)
 metadata/_edit_use_anchors_ = true
 
-[node name="HighScorePannel" type="Sprite2D" parent="."]
+[node name="HighScorePannel" type="Sprite2D" parent="." unique_id=750098439]
 position = Vector2(240, 360)
 scale = Vector2(2, 2)
 texture = ExtResource("6_lky30")
 script = ExtResource("7_62he3")
 
-[node name="New" type="Sprite2D" parent="HighScorePannel"]
+[node name="New" type="Sprite2D" parent="HighScorePannel" unique_id=1924700127]
 position = Vector2(17, 4)
 texture = ExtResource("7_kc6cu")
 
-[node name="GoldMedal" type="Sprite2D" parent="HighScorePannel"]
+[node name="GoldMedal" type="Sprite2D" parent="HighScorePannel" unique_id=1392328507]
 position = Vector2(-33, 4)
 texture = ExtResource("8_62he3")
 
-[node name="SilverMedal" type="Sprite2D" parent="HighScorePannel"]
+[node name="SilverMedal" type="Sprite2D" parent="HighScorePannel" unique_id=1879019040]
 position = Vector2(-33, 4)
 texture = ExtResource("9_b48p2")
 
-[node name="BronzeMedal" type="Sprite2D" parent="HighScorePannel"]
+[node name="BronzeMedal" type="Sprite2D" parent="HighScorePannel" unique_id=1694227939]
 position = Vector2(-33, 4)
 texture = ExtResource("10_086as")
 
-[node name="Score" type="Label" parent="HighScorePannel"]
+[node name="Score" type="Label" parent="HighScorePannel" unique_id=1372516963]
 offset_left = 25.0
 offset_top = -14.0
 offset_right = 45.5
@@ -85,7 +87,7 @@ offset_bottom = 3.0
 theme_override_fonts/font = ExtResource("2_ry2h7")
 text = "05"
 
-[node name="HighScore" type="Label" parent="HighScorePannel"]
+[node name="HighScore" type="Label" parent="HighScorePannel" unique_id=1478407211]
 offset_left = 25.0
 offset_top = 8.0
 offset_right = 42.5
@@ -93,5 +95,26 @@ offset_bottom = 25.0
 theme_override_fonts/font = ExtResource("2_ry2h7")
 text = "0"
 
+[node name="Leaderboard" type="Sprite2D" parent="." unique_id=429038903]
+position = Vector2(240, 545)
+scale = Vector2(3, 3.363)
+texture = ExtResource("12_b48p2")
+
+[node name="Button" type="Button" parent="Leaderboard" unique_id=68890415]
+modulate = Color(1, 1, 1, 0)
+offset_left = -24.666668
+offset_top = -13.380911
+offset_right = 24.666668
+offset_bottom = 13.678263
+
+[node name="LeaderboardManager" parent="." unique_id=1901419734 instance=ExtResource("13_086as")]
+
+[node name="ScoreAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1264037990]
+
+[node name="DeathAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1940145497]
+
 [connection signal="button_down" from="ReplayButton/Button" to="." method="_on_button_button_down"]
 [connection signal="pressed" from="ReplayButton/Button" to="." method="_on_replay_button_pressed"]
+[connection signal="button_down" from="Leaderboard/Button" to="." method="_on_button_leaderboard_down"]
+[connection signal="pressed" from="Leaderboard/Button" to="." method="_on_leaderboard_pressed"]
+[connection signal="hide_leaderboard" from="LeaderboardManager" to="." method="_on_leaderboard_manager_hide_leaderboard"]

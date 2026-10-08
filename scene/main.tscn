@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7677hkxow8c"]
+[gd_scene format=3 uid="uid://7677hkxow8c"]
 
 [ext_resource type="Script" uid="uid://deo6c2fg6ognv" path="res://scripts/main.gd" id="1_brvut"]
 [ext_resource type="PackedScene" uid="uid://qampsxidomc7" path="res://scene/bird.tscn" id="1_wp4xf"]
@@ -14,11 +14,11 @@
 shader = ExtResource("3_p1hux")
 shader_parameter/scroll_offset = 0.05
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=515480001]
 script = ExtResource("1_brvut")
 pipedoor_scene = ExtResource("2_p1hux")
 
-[node name="BackgroundDay" type="TextureRect" parent="."]
+[node name="BackgroundDay" type="TextureRect" parent="." unique_id=915600531]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_b5f6u")
 anchors_preset = 15
@@ -29,7 +29,7 @@ grow_vertical = 2
 texture = ExtResource("4_of57s")
 script = ExtResource("5_b5f6u")
 
-[node name="BackgroundNight" type="TextureRect" parent="."]
+[node name="BackgroundNight" type="TextureRect" parent="." unique_id=293405648]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_b5f6u")
 anchors_preset = 15
@@ -40,14 +40,15 @@ grow_vertical = 2
 texture = ExtResource("5_of57s")
 script = ExtResource("5_b5f6u")
 
-[node name="Bird" parent="." instance=ExtResource("1_wp4xf")]
+[node name="Bird" parent="." unique_id=195759721 instance=ExtResource("1_wp4xf")]
 
-[node name="HUD" parent="." instance=ExtResource("2_brvut")]
+[node name="HUD" parent="." unique_id=1927016089 instance=ExtResource("2_brvut")]
+score = null
 
-[node name="Ground" parent="." instance=ExtResource("3_0ha60")]
+[node name="Ground" parent="." unique_id=436985418 instance=ExtResource("3_0ha60")]
 z_index = 1
 
-[node name="PipeDoorTimer" type="Timer" parent="."]
+[node name="PipeDoorTimer" type="Timer" parent="." unique_id=520752274]
 wait_time = 2.0
 
 [connection signal="game_start" from="." to="Bird" method="_on_main_game_start"]
